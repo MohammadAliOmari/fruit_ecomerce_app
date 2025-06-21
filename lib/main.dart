@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruite_app/core/helper/functions/on_genrate_routes.dart';
 import 'package:fruite_app/core/services/shared_preferences.dart';
+import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/features/splash/presentation/view/splash_view.dart';
 import 'package:fruite_app/generated/l10n.dart';
 
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+      ),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
