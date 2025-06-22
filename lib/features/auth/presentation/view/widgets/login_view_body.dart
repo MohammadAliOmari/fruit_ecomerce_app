@@ -4,7 +4,7 @@ import 'package:fruite_app/core/utils/app_images.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 import 'package:fruite_app/core/widgets/custom_button.dart';
 import 'package:fruite_app/core/widgets/custom_text_form_field.dart';
-import 'package:fruite_app/core/widgets/dont_have_aaccount.dart';
+import 'package:fruite_app/features/auth/presentation/view/widgets/dont_have_aaccount.dart';
 import 'package:fruite_app/core/widgets/or_divider.dart';
 import 'package:fruite_app/features/auth/presentation/view/widgets/social_login_button.dart';
 
