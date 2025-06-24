@@ -1,0 +1,16 @@
+abstract class Failure {
+  final String message;
+
+  Failure(this.message);
+
+  @override
+  String toString() => 'Failure: $message';
+}
+
+class NetworkFailure extends Failure {
+  NetworkFailure(super.message);
+}
+
+class AuthFailure extends Failure {
+  AuthFailure(super.message);
+}

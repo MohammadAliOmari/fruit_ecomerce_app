@@ -5,9 +5,14 @@ import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/features/splash/presentation/view/splash_view.dart';
 import 'package:fruite_app/generated/l10n.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await CacheService.instance;
   runApp(const MyApp());
 }
