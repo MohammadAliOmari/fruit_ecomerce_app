@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruite_app/core/helper/functions/on_genrate_routes.dart';
+import 'package:fruite_app/core/services/get_it_service.dart';
 import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/features/splash/presentation/view/splash_view.dart';
@@ -14,6 +15,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheService.instance;
+  setupGetIt();
   runApp(const MyApp());
 }
 
