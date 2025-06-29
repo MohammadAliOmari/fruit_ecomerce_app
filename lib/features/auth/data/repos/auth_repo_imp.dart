@@ -28,7 +28,7 @@ class AuthRepoImp extends AuthRepo {
       return left(AuthFailure(e.message));
     } catch (e) {
       return left(
-        AuthFailure('An unknown error occurred: $e'),
+        AuthFailure('لقد حدث خطأ أثناء إنشاء الحساب'),
       );
     }
   }

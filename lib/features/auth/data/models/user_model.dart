@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruite_app/features/auth/domain/entites/user_entity.dart';
-import 'package:fruite_app/features/auth/domain/entites/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({required super.name, required super.email, required super.id});
