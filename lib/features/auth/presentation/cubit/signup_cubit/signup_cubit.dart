@@ -8,6 +8,7 @@ part 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this._authRepo) : super(SignupInitial());
   final AuthRepo _authRepo;
+  bool obscureText = true;
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String name,
@@ -23,5 +24,12 @@ class SignupCubit extends Cubit<SignupState> {
       (failure) => emit(SignupFailure(message: failure.message)),
       (userEntity) => emit(SignupSuccess(userEntity: userEntity)),
     );
+  }
+
+  void togglePassword() {
+    obscureText = !obscureText;
+    emit(PasswordVisibilityState(
+      isPasswordVisible: obscureText,
+    ));
   }
 }

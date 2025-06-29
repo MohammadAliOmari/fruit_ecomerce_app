@@ -13,6 +13,12 @@ final class SignupSuccess extends SignupState {
   SignupSuccess({required this.userEntity});
 }
 
+final class PasswordVisibilityState extends SignupState {
+  final bool isPasswordVisible;
+
+  PasswordVisibilityState({required this.isPasswordVisible});
+}
+
 final class SignupFailure extends SignupState {
   final String message;
 

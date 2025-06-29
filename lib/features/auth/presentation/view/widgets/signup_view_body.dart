@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruite_app/core/helper/functions/build_error_snack_bar.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/widgets/custom_button.dart';
 import 'package:fruite_app/core/widgets/custom_text_form_field.dart';
@@ -19,8 +20,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password, name;
+  late bool _isChecked;
   @override
   Widget build(BuildContext context) {
+    final SignupCubit cubit = context.read<SignupCubit>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -58,15 +61,27 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 },
                 hintText: 'كلمة المرور',
                 keyboardType: TextInputType.visiblePassword,
-                suffixIcon: Icon(
-                  Icons.visibility,
-                  color: AppColors.lightgrey2.withOpacity(0.5),
-                ),
+                toogglePassword: cubit.togglePassword,
+                suffixIcon: cubit.obscureText
+                    ? Icon(
+                        Icons.visibility,
+                        color: AppColors.lightgrey2.withOpacity(0.5),
+                      )
+                    : Icon(
+                        Icons.visibility_off,
+                        color: AppColors.lightgrey2.withOpacity(0.5),
+                      ),
+                obscureText: cubit.obscureText,
               ),
               SizedBox(
                 height: 16.0,
               ),
-              TermsAndConditions(),
+              TermsAndConditions(
+                onChanged: (isChecked) {
+                  _isChecked = isChecked;
+                  // You can handle the checkbox state here if needed
+                },
+              ),
               SizedBox(
                 height: 30.0,
               ),
@@ -75,13 +90,18 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      context
-                          .read<SignupCubit>()
-                          .createUserWithEmailAndPassword(
-                            email: email,
-                            name: name,
-                            password: password,
-                          );
+                      if (_isChecked) {
+                        context
+                            .read<SignupCubit>()
+                            .createUserWithEmailAndPassword(
+                              email: email,
+                              name: name,
+                              password: password,
+                            );
+                      } else {
+                        builderrorsnackbar(
+                            context, 'يرجى الموافقة على الشروط والأحكام');
+                      }
                       // Handle signup logic here
                       // For example, call a signup function from a cubit or bloc
                     } else {

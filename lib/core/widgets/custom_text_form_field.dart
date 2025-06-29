@@ -8,16 +8,21 @@ class CustomTextFormField extends StatelessWidget {
       required this.hintText,
       required this.keyboardType,
       this.suffixIcon,
-      this.onSaved});
+      this.onSaved,
+      this.obscureText = false,
+      this.toogglePassword});
   final String hintText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
+  final bool? obscureText; // Default value, can be changed if needed
+  final void Function()? toogglePassword;
   @override
   Widget build(
     BuildContext context,
   ) {
     return TextFormField(
+      obscureText: obscureText!,
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -27,7 +32,14 @@ class CustomTextFormField extends StatelessWidget {
       },
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        suffixIcon: suffixIcon,
+        suffixIcon: obscureText != null
+            ? (suffixIcon != null
+                ? IconButton(
+                    onPressed: toogglePassword,
+                    icon: suffixIcon!,
+                  )
+                : null)
+            : null,
         filled: true,
         fillColor: AppColors.lightgrey.withOpacity(.2),
         hintStyle: AppTextStyles().bodysmallbold.copyWith(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruite_app/core/errors/exceptions.dart';
 import 'package:fruite_app/core/errors/failure.dart';
@@ -27,8 +29,34 @@ class AuthRepoImp extends AuthRepo {
     } on CustomException catch (e) {
       return left(AuthFailure(e.message));
     } catch (e) {
+      log('error in AuthRepoImp.createUserWithEmailAndPassword: ${e.toString()}');
       return left(
         AuthFailure('لقد حدث خطأ أثناء إنشاء الحساب'),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> logInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    if (email.isEmpty || password.isEmpty) {
+      return left(AuthFailure('البريد الإلكتروني وكلمة المرور مطلوبان'));
+    }
+
+    try {
+      var user = await _firebaseAuthService.logInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } on CustomException catch (e) {
+      return left(AuthFailure(e.message));
+    } catch (e) {
+      log('error in AuthRepoImp.logInWithEmailAndPassword: ${e.toString()}');
+      return left(
+        AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول'),
       );
     }
   }

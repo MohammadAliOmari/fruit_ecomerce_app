@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruite_app/core/helper/functions/build_error_snack_bar.dart';
 import 'package:fruite_app/features/auth/presentation/cubit/signup_cubit/signup_cubit.dart';
 
 class SignupBlocListener extends StatelessWidget {
@@ -23,14 +24,10 @@ class SignupBlocListener extends StatelessWidget {
             ),
           );
         } else if (state is SignupSuccess) {
+          Navigator.pop(context); // Close the loading dialog
         } else if (state is SignupFailure) {
           Navigator.pop(context); // Close the loading dialog
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.red,
-            ),
-          );
+          builderrorsnackbar(context, state.message);
         }
       },
       child: const SizedBox.shrink(),

@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 
 class CustomCheckBox extends StatefulWidget {
-  const CustomCheckBox({super.key, required this.isChecked});
-  final bool isChecked;
-
+  const CustomCheckBox({
+    super.key,
+    required this.onchecked,
+  });
+  final ValueChanged<bool>? onchecked;
+  // This widget is used to create a custom checkbox that can be toggled on and off.
   @override
   State<CustomCheckBox> createState() => _CustomCheckBoxState();
 }
 
 class _CustomCheckBoxState extends State<CustomCheckBox> {
-  late bool _isChecked;
-
-  @override
-  void initState() {
-    super.initState();
-    _isChecked = widget.isChecked;
-  }
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +21,7 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       onTap: () {
         setState(() {
           _isChecked = !_isChecked;
+          widget.onchecked?.call(_isChecked);
         });
       },
       child: AnimatedContainer(
