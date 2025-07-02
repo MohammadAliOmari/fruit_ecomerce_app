@@ -11,9 +11,14 @@ import 'package:fruite_app/core/widgets/or_divider.dart';
 import 'package:fruite_app/features/auth/presentation/view/widgets/signin_bloc_listner.dart';
 import 'package:fruite_app/features/auth/presentation/view/widgets/social_signin_button.dart';
 
-class SigninViewBody extends StatelessWidget {
+class SigninViewBody extends StatefulWidget {
   const SigninViewBody({super.key});
 
+  @override
+  State<SigninViewBody> createState() => _SigninViewBodyState();
+}
+
+class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<SigninCubit>();
@@ -76,7 +81,9 @@ class SigninViewBody extends StatelessWidget {
                         password: cubit.passwordController.text,
                       );
                     } else {
-                      cubit.autoValidateMode = AutovalidateMode.always;
+                      setState(() {
+                        cubit.autoValidateMode = AutovalidateMode.always;
+                      });
                     }
                   }),
               const SizedBox(height: 33),
@@ -87,7 +94,9 @@ class SigninViewBody extends StatelessWidget {
               SocialSigninButton(
                 text: 'تسجيل بواسطة جوجل',
                 image: Assets.assetsImagesGoogleicons,
-                onPressed: () {},
+                onPressed: () {
+                  cubit.signInWithGoogle();
+                },
               ),
               SizedBox(height: 16),
               SocialSigninButton(

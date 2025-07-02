@@ -62,5 +62,19 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithGoogle() {}
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await _firebaseAuthService.signInWithGoogle();
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } on CustomException catch (e) {
+      return left(AuthFailure(e.message));
+    } catch (e) {
+      log('error in AuthRepoImp.signInWithGoogle: ${e.toString()}');
+      return left(
+        AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول باستخدام جوجل'),
+      );
+    }
+  }
 }

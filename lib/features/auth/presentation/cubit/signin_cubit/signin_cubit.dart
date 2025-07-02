@@ -28,6 +28,15 @@ class SigninCubit extends Cubit<SigninState> {
     );
   }
 
+  Future<void> signInWithGoogle() async {
+    emit(SigninLoading());
+    final result = await _authRepo.signInWithGoogle();
+    result.fold(
+      (failure) => emit(SigninFailure(failure.message)),
+      (user) => emit(SigninSuccess(user)),
+    );
+  }
+
   void togglePasswordVisibility() {
     obscureText = !obscureText;
     emit(PasswordVisibilityState());
