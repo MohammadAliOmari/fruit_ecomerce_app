@@ -10,9 +10,11 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.onSaved,
       this.obscureText = false,
-      this.toogglePassword});
+      this.toogglePassword,
+      this.controller});
   final String hintText;
   final TextInputType keyboardType;
+  final TextEditingController? controller;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool? obscureText; // Default value, can be changed if needed
@@ -22,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     BuildContext context,
   ) {
     return TextFormField(
+      controller: controller,
       obscureText: obscureText!,
       onSaved: onSaved,
       validator: (value) {

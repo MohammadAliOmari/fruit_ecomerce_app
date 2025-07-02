@@ -4,7 +4,7 @@ import 'package:fruite_app/constants.dart';
 import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/widgets/custom_button.dart';
-import 'package:fruite_app/features/auth/presentation/view/login_view.dart';
+import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
 import 'package:fruite_app/features/on_boarding/presentation/view/widgets/on_boarrding_page_view.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -70,7 +70,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                   final cacheService = await CacheService.instance;
                   await cacheService.setBool(kisOnBoardingSeen, true);
                   navigator.pushReplacementNamed(
-                    LoginView.routeName, // Replace with your actual route name
+                    SigninView.routeName, // Replace with your actual route name
                   );
                 }),
           ),

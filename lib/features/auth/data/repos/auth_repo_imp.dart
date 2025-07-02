@@ -37,14 +37,14 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> logInWithEmailAndPassword(
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       {required String email, required String password}) async {
     if (email.isEmpty || password.isEmpty) {
       return left(AuthFailure('البريد الإلكتروني وكلمة المرور مطلوبان'));
     }
 
     try {
-      var user = await _firebaseAuthService.logInWithEmailAndPassword(
+      var user = await _firebaseAuthService.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -60,4 +60,7 @@ class AuthRepoImp extends AuthRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() {}
 }

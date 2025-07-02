@@ -3,8 +3,8 @@ import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 import 'package:svg_flutter/svg.dart';
 
-class SocialLoginButton extends StatelessWidget {
-  const SocialLoginButton(
+class SocialSigninButton extends StatelessWidget {
+  const SocialSigninButton(
       {super.key,
       required this.image,
       required this.text,

@@ -3,7 +3,7 @@ import 'package:fruite_app/constants.dart';
 import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
-import 'package:fruite_app/features/auth/presentation/view/login_view.dart';
+import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
 import 'package:svg_flutter/svg.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -52,7 +52,7 @@ class PageViewItem extends StatelessWidget {
                       await cacheService.setBool(kisOnBoardingSeen, true);
 
                       navigator.pushReplacementNamed(
-                        LoginView.routeName,
+                        SigninView.routeName,
                       );
                     },
                     child: Text(

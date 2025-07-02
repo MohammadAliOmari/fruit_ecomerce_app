@@ -6,7 +6,7 @@ import 'package:fruite_app/core/widgets/custom_button.dart';
 import 'package:fruite_app/core/widgets/custom_text_form_field.dart';
 import 'package:fruite_app/features/auth/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:fruite_app/features/auth/presentation/view/widgets/have_an_account.dart';
-import 'package:fruite_app/features/auth/presentation/view/widgets/signup_view_body_bloc_listener.dart';
+import 'package:fruite_app/features/auth/presentation/view/widgets/signup_bloc_listener.dart';
 import 'package:fruite_app/features/auth/presentation/view/widgets/terms_and_conditions.dart';
 
 class SignupViewBody extends StatefulWidget {
