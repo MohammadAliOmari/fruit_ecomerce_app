@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Fruite ecomerce</string>
+<string name="facebook_app_id">1050767520586753</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">60a68a68bc382de864170493a640c3db</string>
+
+
+</resources>

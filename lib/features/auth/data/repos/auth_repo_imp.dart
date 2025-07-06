@@ -77,4 +77,21 @@ class AuthRepoImp extends AuthRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    try {
+      var user = await _firebaseAuthService.signInWithFacebook();
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } on CustomException catch (e) {
+      return left(AuthFailure(e.message));
+    } catch (e) {
+      log('error in AuthRepoImp.signInWithFacebook: ${e.toString()}');
+      return left(
+        AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول باستخدام فيسبوك'),
+      );
+    }
+  }
 }

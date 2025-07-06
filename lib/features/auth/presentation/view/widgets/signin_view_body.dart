@@ -108,7 +108,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               SocialSigninButton(
                 text: 'تسجيل بواسطة فيسبوك',
                 image: Assets.assetsImagesFacbookicons,
-                onPressed: () {},
+                onPressed: () {
+                  cubit.signInWithFacebook();
+                },
               ),
               SigninBlocListener(),
             ],

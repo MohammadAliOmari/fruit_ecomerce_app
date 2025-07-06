@@ -37,6 +37,15 @@ class SigninCubit extends Cubit<SigninState> {
     );
   }
 
+  Future<void> signInWithFacebook() async {
+    emit(SigninLoading());
+    final result = await _authRepo.signInWithFacebook();
+    result.fold(
+      (failure) => emit(SigninFailure(failure.message)),
+      (user) => emit(SigninSuccess(user)),
+    );
+  }
+
   void togglePasswordVisibility() {
     obscureText = !obscureText;
     emit(PasswordVisibilityState());
