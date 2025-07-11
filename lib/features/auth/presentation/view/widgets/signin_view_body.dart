@@ -98,12 +98,12 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   cubit.signInWithGoogle();
                 },
               ),
-              SizedBox(height: 16),
-              SocialSigninButton(
-                text: 'تسجيل بواسطة أبل',
-                image: Assets.assetsImagesAppleicon,
-                onPressed: () {},
-              ),
+              // SizedBox(height: 16),
+              // SocialSigninButton(
+              //   text: 'تسجيل بواسطة أبل',
+              //   image: Assets.assetsImagesAppleicon,
+              //   onPressed: () {},
+              // ),
               SizedBox(height: 16),
               SocialSigninButton(
                 text: 'تسجيل بواسطة فيسبوك',

@@ -1,34 +1,47 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruite_app/core/errors/exceptions.dart';
 import 'package:fruite_app/core/errors/failure.dart';
+import 'package:fruite_app/core/services/data_base_services.dart';
 import 'package:fruite_app/core/services/firebase_auth_service.dart';
+import 'package:fruite_app/core/utils/backend_end_point.dart';
 import 'package:fruite_app/features/auth/data/models/user_model.dart';
 import 'package:fruite_app/features/auth/domain/entites/user_entity.dart';
 import 'package:fruite_app/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImp extends AuthRepo {
-  final FirebaseAuthService _firebaseAuthService;
-
-  AuthRepoImp(this._firebaseAuthService);
+  final FirebaseAuthService firebaseAuthService;
+  final DataBaseService dataBaseService;
+  AuthRepoImp(
+      {required this.firebaseAuthService, required this.dataBaseService});
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       {required String email,
       required String password,
       required String name}) async {
+    User? user;
     try {
-      var user = await _firebaseAuthService.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      var userEntity = UserEntity(name: name, id: user.uid, email: email);
+      await addUserDataToFirestore(user: userEntity);
       return right(
-        UserModel.fromFirebaseUser(user),
+        userEntity,
       );
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       return left(AuthFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       log('error in AuthRepoImp.createUserWithEmailAndPassword: ${e.toString()}');
       return left(
         AuthFailure('لقد حدث خطأ أثناء إنشاء الحساب'),
@@ -44,7 +57,7 @@ class AuthRepoImp extends AuthRepo {
     }
 
     try {
-      var user = await _firebaseAuthService.signInWithEmailAndPassword(
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -64,7 +77,7 @@ class AuthRepoImp extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
     try {
-      var user = await _firebaseAuthService.signInWithGoogle();
+      var user = await firebaseAuthService.signInWithGoogle();
       return right(
         UserModel.fromFirebaseUser(user),
       );
@@ -81,7 +94,7 @@ class AuthRepoImp extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
     try {
-      var user = await _firebaseAuthService.signInWithFacebook();
+      var user = await firebaseAuthService.signInWithFacebook();
       return right(
         UserModel.fromFirebaseUser(user),
       );
@@ -92,6 +105,15 @@ class AuthRepoImp extends AuthRepo {
       return left(
         AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول باستخدام فيسبوك'),
       );
+    }
+  }
+
+  @override
+  Future addUserDataToFirestore({required UserEntity user}) async {
+    try {
+      await dataBaseService.addData(BackendEndPoint.addUserData, user.toMap());
+    } catch (e) {
+      log('error in AuthRepoImp.addUserDataToFirestore: ${e.toString()}');
     }
   }
 }
