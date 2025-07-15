@@ -16,7 +16,7 @@ class UserModel extends UserEntity {
     return UserModel(
       name: json['name'],
       email: json['email'],
-      id: json['uId'],
+      id: json['id'],
     );
   }
 
@@ -28,6 +28,7 @@ class UserModel extends UserEntity {
     );
   }
 
+  @override
   toMap() {
     return {
       'name': name,

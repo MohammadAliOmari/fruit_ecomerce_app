@@ -28,8 +28,11 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
+
       var userEntity = UserEntity(name: name, id: user.uid, email: email);
-      await addUserDataToFirestore(user: userEntity);
+      await addUserDataToFirestore(
+        user: userEntity,
+      );
       return right(
         userEntity,
       );
@@ -61,9 +64,9 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(
-        UserModel.fromFirebaseUser(user),
-      );
+
+      var userEntity = await getUserData(userId: user.uid);
+      return right(userEntity);
     } on CustomException catch (e) {
       return left(AuthFailure(e.message));
     } catch (e) {
@@ -76,14 +79,25 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithGoogle();
+      user = await firebaseAuthService.signInWithGoogle();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDataToFirestore(
+        user: userEntity,
+      );
       return right(
-        UserModel.fromFirebaseUser(user),
+        userEntity,
       );
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       return left(AuthFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       log('error in AuthRepoImp.signInWithGoogle: ${e.toString()}');
       return left(
         AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول باستخدام جوجل'),
@@ -93,14 +107,23 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithFacebook();
-      return right(
-        UserModel.fromFirebaseUser(user),
+      user = await firebaseAuthService.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserDataToFirestore(
+        user: userEntity,
       );
+      return right(userEntity);
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       return left(AuthFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       log('error in AuthRepoImp.signInWithFacebook: ${e.toString()}');
       return left(
         AuthFailure('لقد حدث خطأ أثناء تسجيل الدخول باستخدام فيسبوك'),
@@ -111,9 +134,20 @@ class AuthRepoImp extends AuthRepo {
   @override
   Future addUserDataToFirestore({required UserEntity user}) async {
     try {
-      await dataBaseService.addData(BackendEndPoint.addUserData, user.toMap());
+      await dataBaseService.addData(
+          collectionPath: BackendEndPoint.users,
+          data: user.toMap(),
+          docId: user.id);
     } catch (e) {
       log('error in AuthRepoImp.addUserDataToFirestore: ${e.toString()}');
     }
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String userId}) async {
+    var userData = await dataBaseService.getData(
+        docId: userId, collectionPath: BackendEndPoint.users);
+
+    return UserModel.fromJson(userData);
   }
 }

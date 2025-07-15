@@ -19,4 +19,5 @@ abstract class AuthRepo {
   Future addUserDataToFirestore({
     required UserEntity user,
   });
+  Future<UserEntity> getUserData({required String userId});
 }
