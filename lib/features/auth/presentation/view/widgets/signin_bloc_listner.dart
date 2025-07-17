@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/helper/functions/build_error_snack_bar.dart';
 import 'package:fruite_app/features/auth/presentation/cubit/signin_cubit/signin_cubit.dart';
+import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 
 class SigninBlocListener extends StatelessWidget {
   const SigninBlocListener({super.key});
@@ -23,6 +24,7 @@ class SigninBlocListener extends StatelessWidget {
           );
         } else if (state is SigninSuccess) {
           Navigator.pop(context); // Close the loading dialog
+          Navigator.pushNamed(context, HomeView.routeName);
         } else if (state is SigninFailure) {
           Navigator.pop(context); // Close the loading dialog
           builderrorsnackbar(context, state.message);

@@ -24,7 +24,9 @@ class SignupBlocListener extends StatelessWidget {
             ),
           );
         } else if (state is SignupSuccess) {
-          Navigator.pop(context); // Close the loading dialog
+          Navigator.pop(context);
+          // Close the loading dialog
+          Navigator.pop(context);
         } else if (state is SignupFailure) {
           Navigator.pop(context); // Close the loading dialog
           builderrorsnackbar(context, state.message);
