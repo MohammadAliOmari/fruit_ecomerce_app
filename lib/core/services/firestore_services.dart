@@ -21,4 +21,11 @@ class FirestoreServices implements DataBaseService {
     var data = await firestore.collection(collectionPath).doc(docId).get();
     return data.data()!;
   }
+
+  @override
+  Future<bool> checkIfUserExists(
+      {required String userId, required String collectionPath}) async {
+    var data = await firestore.collection(collectionPath).doc(userId).get();
+    return data.exists;
+  }
 }
