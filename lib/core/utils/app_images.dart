@@ -1,15 +1,18 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for assetsImagesAppleicon
   /// assets/images/appleicon.svg
   static const String assetsImagesAppleicon = "assets/images/appleicon.svg";
 
   /// Assets for assetsImagesFacbookicons
   /// assets/images/facbookicons.svg
-  static const String assetsImagesFacbookicons =
-      "assets/images/facbookicons.svg";
+  static const String assetsImagesFacbookicons = "assets/images/facbookicons.svg";
+
+  /// Assets for assetsImagesFiltter
+  /// assets/images/filtter.svg
+  static const String assetsImagesFiltter = "assets/images/filtter.svg";
 
   /// Assets for assetsImagesFruit
   /// assets/images/fruit.png
@@ -25,28 +28,23 @@ class Assets {
 
   /// Assets for assetsImagesNotification
   /// assets/images/notification.svg
-  static const String assetsImagesNotification =
-      "assets/images/notification.svg";
+  static const String assetsImagesNotification = "assets/images/notification.svg";
 
   /// Assets for assetsImagesOnboardingBg1
   /// assets/images/onboarding_bg1.svg
-  static const String assetsImagesOnboardingBg1 =
-      "assets/images/onboarding_bg1.svg";
+  static const String assetsImagesOnboardingBg1 = "assets/images/onboarding_bg1.svg";
 
   /// Assets for assetsImagesOnboardingBg2
   /// assets/images/onboarding_bg2.svg
-  static const String assetsImagesOnboardingBg2 =
-      "assets/images/onboarding_bg2.svg";
+  static const String assetsImagesOnboardingBg2 = "assets/images/onboarding_bg2.svg";
 
   /// Assets for assetsImagesOnboardingImg1
   /// assets/images/onboarding_img1.svg
-  static const String assetsImagesOnboardingImg1 =
-      "assets/images/onboarding_img1.svg";
+  static const String assetsImagesOnboardingImg1 = "assets/images/onboarding_img1.svg";
 
   /// Assets for assetsImagesOnboardingImg2
   /// assets/images/onboarding_img2.svg
-  static const String assetsImagesOnboardingImg2 =
-      "assets/images/onboarding_img2.svg";
+  static const String assetsImagesOnboardingImg2 = "assets/images/onboarding_img2.svg";
 
   /// Assets for assetsImagesPlant
   /// assets/images/plant.svg
@@ -56,8 +54,12 @@ class Assets {
   /// assets/images/profile_pic.png
   static const String assetsImagesProfilePic = "assets/images/profile_pic.png";
 
+  /// Assets for assetsImagesSearch
+  /// assets/images/search.svg
+  static const String assetsImagesSearch = "assets/images/search.svg";
+
   /// Assets for assetsImagesSplashBottom
   /// assets/images/splash_bottom.svg
-  static const String assetsImagesSplashBottom =
-      "assets/images/splash_bottom.svg";
+  static const String assetsImagesSplashBottom = "assets/images/splash_bottom.svg";
 }
+
