@@ -7,7 +7,7 @@ class FeaturedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 160, // Adjust based on your design
+      height: 158, // Adjust based on your design
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 8),
