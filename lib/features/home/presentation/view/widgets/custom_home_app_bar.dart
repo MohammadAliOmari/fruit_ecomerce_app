@@ -18,9 +18,15 @@ class CustomHomeAppBar extends StatelessWidget {
           color: AppColors.lightgrey,
           shape: OvalBorder(),
         ),
-        child: SvgPicture.asset(
-          Assets.assetsImagesNotification,
-          height: 20,
+        child: Badge(
+          backgroundColor: Colors.red,
+          alignment: Alignment.topCenter,
+          smallSize: 5,
+          largeSize: 5,
+          child: SvgPicture.asset(
+            Assets.assetsImagesNotification,
+            height: 20,
+          ),
         ),
       ),
       leading: SizedBox(

@@ -9,7 +9,7 @@ class FeauterdItemButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 130,
-      height: 33,
+      height: 32,
       child: TextButton(
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -19,9 +19,11 @@ class FeauterdItemButton extends StatelessWidget {
           foregroundColor: AppColors.primary,
         ),
         onPressed: () {}, // Add your onPressed functionality here
-        child: Text(
-          'تسوق الان',
-          style: AppTextStyles().bodysmallbold.copyWith(),
+        child: FittedBox(
+          child: Text(
+            'تسوق الان',
+            style: AppTextStyles().bodysmallbold.copyWith(),
+          ),
         ),
       ),
     );
