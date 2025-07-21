@@ -9,9 +9,10 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 214,
-      width: 160,
-      color: Color(0xFFF3F5F7),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: Color(0xFFF3F5F7),
+      ),
       child: Stack(
         children: [
           Positioned(
@@ -33,6 +34,9 @@ class ProductItem extends StatelessWidget {
                   width: 100,
                   height: 130,
                 ),
+                const SizedBox(
+                  height: 24,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 9.0),
                   child: Row(
@@ -50,7 +54,7 @@ class ProductItem extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '30دينار',
+                                  text: '0.30 د.أ',
                                   style: AppTextStyles().bodysmallbold.copyWith(
                                         color:
                                             AppColors.orange /* Orange-500 */,
