@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:fruite_app/features/home/domain/entites/bottom_nav_bar_entity.dart';
 import 'package:fruite_app/features/home/presentation/view/widgets/active_item.dart';
 import 'package:fruite_app/features/home/presentation/view/widgets/inactive_item.dart';
 
 class BottomNavItem extends StatelessWidget {
-  const BottomNavItem(
-      {super.key,
-      required this.isActive,
-      required this.activeIcon,
-      required this.inactiveIcon});
+  const BottomNavItem({super.key, required this.isActive, required this.e});
   final bool isActive;
-  final String activeIcon;
-  final String inactiveIcon;
+  final BottomNavBarEntity e;
   @override
   Widget build(BuildContext context) {
-    return isActive
-        ? const ActiveItem()
-        : InActiveItem(
-            icon: inactiveIcon,
-          );
+    return AnimatedSwitcher(
+        duration: Duration(milliseconds: 300),
+        switchInCurve: Curves.easeInOut,
+        switchOutCurve: Curves.easeInOut,
+        child: isActive
+            ? ActiveItem(
+                icon: e.activeIcon,
+                text: e.title,
+              )
+            : InActiveItem(icon: e.inactiveIcon));
   }
 }
