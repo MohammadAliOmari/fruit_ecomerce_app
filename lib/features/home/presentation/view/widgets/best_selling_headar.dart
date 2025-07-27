@@ -19,7 +19,9 @@ class BestSellingHeadar extends StatelessWidget {
                 ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/best-selling');
+            },
             child: Text(
               'عرض الكل',
               style: AppTextStyles().bodysmallRegular.copyWith(

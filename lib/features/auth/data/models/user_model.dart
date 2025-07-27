@@ -28,7 +28,6 @@ class UserModel extends UserEntity {
     );
   }
 
-  @override
   toMap() {
     return {
       'name': name,

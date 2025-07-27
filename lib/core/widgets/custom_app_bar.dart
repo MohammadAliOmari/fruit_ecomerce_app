@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
+import 'package:fruite_app/core/widgets/notifcation_widget.dart';
 
-AppBar buildAppBar(BuildContext context, {required String title}) {
+AppBar customAppBar({required BuildContext context, required String title}) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    actions: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: NotifcationWidget(),
+      ),
+    ],
     leading: IconButton(
-      icon: const Icon(Icons.arrow_back_ios_new),
-      onPressed: () {
-        Navigator.pop(context);
-      },
+      icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+      onPressed: () => Navigator.pop(context),
     ),
     title: Text(
       title,
-      style: AppTextStyles().bodyLargebold,
+      style: AppTextStyles().bodyLargebold.copyWith(color: Colors.black),
     ),
     centerTitle: true,
   );

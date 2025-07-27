@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:fruite_app/constants.dart';
+import 'package:fruite_app/core/services/firebase_auth_service.dart';
 import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_images.dart';
 import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
+import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -46,9 +50,14 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       CacheService.instance.then((cacheService) {
         bool isOnBoardingSeen =
             cacheService.getBool(kisOnBoardingSeen) ?? false;
+        bool isSignedIn = FirebaseAuthService().isUserSignedIn();
         if (mounted) {
           if (isOnBoardingSeen) {
-            Navigator.pushReplacementNamed(context, SigninView.routeName);
+            if (!isSignedIn) {
+              Navigator.pushReplacementNamed(context, HomeView.routeName);
+            } else {
+              Navigator.pushReplacementNamed(context, SigninView.routeName);
+            }
           } else {
             Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
           }

@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fruite_app/constants.dart';
 import 'package:fruite_app/core/errors/exceptions.dart';
 import 'package:fruite_app/core/errors/failure.dart';
 import 'package:fruite_app/core/services/data_base_services.dart';
 import 'package:fruite_app/core/services/firebase_auth_service.dart';
+import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/backend_end_point.dart';
 import 'package:fruite_app/features/auth/data/models/user_model.dart';
 import 'package:fruite_app/features/auth/domain/entites/user_entity.dart';
@@ -28,7 +31,6 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-
       var userEntity = UserEntity(name: name, id: user.uid, email: email);
       await addUserDataToFirestore(
         user: userEntity,
@@ -66,6 +68,7 @@ class AuthRepoImp extends AuthRepo {
       );
 
       var userEntity = await getUserData(userId: user.uid);
+      saveUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       return left(AuthFailure(e.message));
@@ -148,7 +151,7 @@ class AuthRepoImp extends AuthRepo {
     try {
       await dataBaseService.addData(
           collectionPath: BackendEndPoint.users,
-          data: user.toMap(),
+          data: UserModel.fromEntity(user).toMap(),
           docId: user.id);
     } catch (e) {
       log('error in AuthRepoImp.addUserDataToFirestore: ${e.toString()}');
@@ -160,6 +163,21 @@ class AuthRepoImp extends AuthRepo {
     var userData = await dataBaseService.getData(
         docId: userId, collectionPath: BackendEndPoint.users);
 
+    // var jsondata = jsonEncode(userData);
+
+    // final cacheService = await CacheService.instance;
+    // await cacheService.setString(
+    //   kUserName,
+    //   jsondata,
+    // );
+    // log(cacheService.getString(kUserName) ?? 'No user name found');
     return UserModel.fromJson(userData);
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var cach = await CacheService.instance;
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await cach.setString(kUserName, jsonData);
   }
 }
