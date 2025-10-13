@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fruite_app/constants.dart';
 import 'package:fruite_app/core/services/firebase_auth_service.dart';
@@ -47,22 +45,19 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void excuteNavigation() {
     Future.delayed(const Duration(seconds: 3), () {
-      CacheService.instance.then((cacheService) {
-        bool isOnBoardingSeen =
-            cacheService.getBool(kisOnBoardingSeen) ?? false;
-        bool isSignedIn = FirebaseAuthService().isUserSignedIn();
-        if (mounted) {
-          if (isOnBoardingSeen) {
-            if (!isSignedIn) {
-              Navigator.pushReplacementNamed(context, HomeView.routeName);
-            } else {
-              Navigator.pushReplacementNamed(context, SigninView.routeName);
-            }
+      bool isSignedIn = FirebaseAuthService().isUserSignedIn();
+      bool isOnBoardingSeen = Prefs.getBool(kisOnBoardingSeen);
+      if (mounted) {
+        if (isOnBoardingSeen) {
+          if (isSignedIn) {
+            Navigator.pushReplacementNamed(context, HomeView.routeName);
           } else {
-            Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+            Navigator.pushReplacementNamed(context, SigninView.routeName);
           }
+        } else {
+          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
         }
-      });
+      }
     });
   }
 }

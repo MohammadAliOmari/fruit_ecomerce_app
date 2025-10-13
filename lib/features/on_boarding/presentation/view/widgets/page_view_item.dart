@@ -46,10 +46,9 @@ class PageViewItem extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(16),
                   child: GestureDetector(
-                    onTap: () async {
+                    onTap: () {
                       final navigator = Navigator.of(context);
-                      final cacheService = await CacheService.instance;
-                      await cacheService.setBool(kisOnBoardingSeen, true);
+                      Prefs.setBool(kisOnBoardingSeen, true);
 
                       navigator.pushReplacementNamed(
                         SigninView.routeName,

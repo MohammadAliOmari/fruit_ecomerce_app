@@ -86,14 +86,17 @@ class AuthRepoImp extends AuthRepo {
     try {
       user = await firebaseAuthService.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
+
       var isUserExist = await dataBaseService.checkIfUserExists(
           userId: userEntity.id, collectionPath: BackendEndPoint.users);
       if (isUserExist) {
         await getUserData(userId: user.uid);
+        saveUserData(user: userEntity);
       } else {
         await addUserDataToFirestore(
           user: userEntity,
         );
+        saveUserData(user: userEntity);
       }
       return right(
         userEntity,
@@ -120,14 +123,17 @@ class AuthRepoImp extends AuthRepo {
     try {
       user = await firebaseAuthService.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
+
       var isUserExist = await dataBaseService.checkIfUserExists(
           userId: userEntity.id, collectionPath: BackendEndPoint.users);
       if (isUserExist) {
         await getUserData(userId: user.uid);
+        saveUserData(user: userEntity);
       } else {
         await addUserDataToFirestore(
           user: userEntity,
         );
+        saveUserData(user: userEntity);
       }
       return right(userEntity);
     } on CustomException catch (e) {
@@ -176,8 +182,7 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future saveUserData({required UserEntity user}) async {
-    var cach = await CacheService.instance;
     var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
-    await cach.setString(kUserName, jsonData);
+    await Prefs.setString(kUserName, jsonData);
   }
 }

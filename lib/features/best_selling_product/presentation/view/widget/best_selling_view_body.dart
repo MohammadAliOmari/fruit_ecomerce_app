@@ -6,10 +6,6 @@ class BestSellingViewBody extends StatelessWidget {
   const BestSellingViewBody({super.key});
 
   @override
-/*************  ✨ Windsurf Command ⭐  *************/
-  /// Build method for [BestSellingViewBody]
-
-/*******  c879cb59-c7c2-4c13-a78b-e630dbb02d95  *******/
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [

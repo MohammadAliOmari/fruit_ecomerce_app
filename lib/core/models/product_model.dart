@@ -1,0 +1,82 @@
+import 'dart:io';
+
+import 'package:fruite_app/core/models/review_product_model.dart';
+
+class ProductModel {
+  final String name;
+  final String description;
+  final double price;
+  final String code;
+  final bool isFutureProduct;
+  final File? image;
+  String? imagePath;
+  final int expireDate;
+  final bool isOrganic;
+  final int calories;
+  final int unitAmount;
+  final num avgRating;
+  final num sellingCount;
+  final int totalRating;
+  final List<ReviewProductModel> reviews;
+
+  ProductModel({
+    required this.code,
+    required this.image,
+    required this.isFutureProduct,
+    required this.name,
+    required this.description,
+    required this.price,
+    this.imagePath,
+    required this.expireDate,
+    required this.isOrganic,
+    required this.calories,
+    required this.unitAmount,
+    required this.avgRating,
+    required this.sellingCount,
+    required this.totalRating,
+    required this.reviews,
+  });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      name: json['name'],
+      description: json['description'],
+      price: json['price'],
+      code: json['code'],
+      isFutureProduct: json['isFutureProduct'],
+      image: json['image'],
+      imagePath: json['imagePath'],
+      expireDate: json['expireDate'],
+      isOrganic: json['isOrganic'],
+      calories: json['calories'],
+      unitAmount: json['unitAmount'],
+      avgRating: json['avgRating'],
+      sellingCount: json['sellingCount'],
+      totalRating: json['totalRating'],
+      reviews: List<ReviewProductModel>.from(
+        json['reviews'].map(
+          (x) => ReviewProductModel.fromJson(x),
+        ),
+      ),
+    );
+  }
+
+  toMap() {
+    return {
+      'name': name,
+      'description': description,
+      'price': price,
+      'code': code,
+      'isFutureProduct': isFutureProduct,
+      'imagePath': imagePath,
+      'expireDate': expireDate,
+      'isOrganic': isOrganic,
+      'calories': calories,
+      'unitAmount': unitAmount,
+      'avgRating': avgRating,
+      'sellingCount': sellingCount,
+      'totalRating': totalRating,
+      'reviews': reviews.map((e) => e.toMap()).toList(),
+    };
+  }
+}

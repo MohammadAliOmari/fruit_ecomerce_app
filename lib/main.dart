@@ -17,7 +17,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await CacheService.instance;
+  await Prefs.init();
   setupGetIt();
   runApp(const MyApp());
 }

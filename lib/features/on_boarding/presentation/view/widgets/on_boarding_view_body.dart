@@ -67,8 +67,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 title: 'ابدأ الان',
                 onPressed: () async {
                   final navigator = Navigator.of(context);
-                  final cacheService = await CacheService.instance;
-                  await cacheService.setBool(kisOnBoardingSeen, true);
+                  Prefs.setBool(kisOnBoardingSeen, true);
                   navigator.pushReplacementNamed(
                     SigninView.routeName, // Replace with your actual route name
                   );
