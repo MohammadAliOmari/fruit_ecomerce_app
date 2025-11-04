@@ -5,6 +5,7 @@ import 'package:fruite_app/core/services/shared_preferences.dart';
 import 'package:fruite_app/core/utils/app_images.dart';
 import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
+import 'package:fruite_app/features/layout/presentation/layout_view.dart';
 import 'package:fruite_app/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -50,7 +51,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       if (mounted) {
         if (isOnBoardingSeen) {
           if (isSignedIn) {
-            Navigator.pushReplacementNamed(context, HomeView.routeName);
+            Navigator.pushReplacementNamed(context, LayoutView.routeName);
           } else {
             Navigator.pushReplacementNamed(context, SigninView.routeName);
           }

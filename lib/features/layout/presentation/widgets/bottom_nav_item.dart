@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/features/home/domain/entites/bottom_nav_bar_entity.dart';
-import 'package:fruite_app/features/home/presentation/view/widgets/active_item.dart';
-import 'package:fruite_app/features/home/presentation/view/widgets/inactive_item.dart';
+import 'package:fruite_app/features/layout/presentation/widgets/active_item.dart';
+import 'package:fruite_app/features/layout/presentation/widgets/inactive_item.dart';
 
 class BottomNavItem extends StatelessWidget {
   const BottomNavItem({super.key, required this.isActive, required this.e});

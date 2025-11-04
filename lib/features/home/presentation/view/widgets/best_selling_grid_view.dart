@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fruite_app/core/entities/product_entity.dart';
 import 'package:fruite_app/features/home/presentation/view/widgets/product_item.dart';
 
 class BestSellingGridView extends StatelessWidget {
-  const BestSellingGridView({super.key});
-
+  const BestSellingGridView({super.key, required this.products});
+  final List<ProductEntity> products;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(

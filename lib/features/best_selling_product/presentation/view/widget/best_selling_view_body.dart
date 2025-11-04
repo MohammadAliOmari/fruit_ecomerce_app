@@ -23,7 +23,9 @@ class BestSellingViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: SizedBox(height: 8),
         ),
-        const BestSellingGridView(),
+        const BestSellingGridView(
+          products: [],
+        ),
       ],
     );
   }
