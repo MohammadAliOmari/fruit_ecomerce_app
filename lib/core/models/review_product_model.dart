@@ -34,6 +34,16 @@ class ReviewProductModel {
     );
   }
 
+  ReviewProductEntity toEntity() {
+    return ReviewProductEntity(
+      name: name,
+      date: date,
+      rating: rating,
+      reviewDescription: reviewDescription,
+      image: image,
+    );
+  }
+
   toMap() {
     return {
       'name': name,
