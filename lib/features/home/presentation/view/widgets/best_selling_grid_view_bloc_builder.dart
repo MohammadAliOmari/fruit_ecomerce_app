@@ -17,7 +17,9 @@ class BestSellingGridViewBlocBuilder extends StatelessWidget {
         if (state is ProductsSuccessState) {
           return BestSellingGridView(products: state.products);
         } else if (state is ProductsFailureState) {
-          return CustomErrorWidget(message: state.message);
+          return SliverToBoxAdapter(
+            child: CustomErrorWidget(message: state.message),
+          );
         } else {
           return BestSellingGridViewShimmer();
         }
