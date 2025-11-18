@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/core/entities/product_entity.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
-import 'package:fruite_app/core/utils/app_images.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 
 class ProductItem extends StatelessWidget {
@@ -30,11 +29,17 @@ class ProductItem extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Image.network(
-                  productEntity.imagePath!,
-                  width: 100,
-                  height: 130,
-                ),
+                productEntity.imagePath != null
+                    ? Image.network(
+                        productEntity.imagePath!,
+                        width: 100,
+                        height: 140,
+                      )
+                    : Container(
+                        width: 100,
+                        height: 140,
+                        color: Colors.white,
+                      ),
                 const SizedBox(
                   height: 24,
                 ),

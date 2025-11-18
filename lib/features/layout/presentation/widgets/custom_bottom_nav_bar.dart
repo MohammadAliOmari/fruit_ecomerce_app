@@ -3,8 +3,8 @@ import 'package:fruite_app/features/home/domain/entites/bottom_nav_bar_entity.da
 import 'package:fruite_app/features/layout/presentation/widgets/bottom_nav_item.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({super.key});
-
+  const CustomBottomNavBar({super.key, required this.onTabChange});
+  final ValueChanged<int> onTabChange;
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
@@ -45,6 +45,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   setState(() {
                     selectedindex = index;
                   });
+                  widget.onTabChange(index);
                 },
                 child: BottomNavItem(
                   e: entity,

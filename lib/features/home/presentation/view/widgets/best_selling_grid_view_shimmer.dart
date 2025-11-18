@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/features/home/presentation/view/widgets/product_item_shimmer.dart';
-import 'package:shimmer/shimmer.dart';
 
 class BestSellingGridViewShimmer extends StatelessWidget {
   const BestSellingGridViewShimmer({super.key});
