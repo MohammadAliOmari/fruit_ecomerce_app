@@ -9,15 +9,18 @@ class BottomNavItem extends StatelessWidget {
   final BottomNavBarEntity e;
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-        duration: Duration(milliseconds: 300),
-        switchInCurve: Curves.easeInOut,
-        switchOutCurve: Curves.easeInOut,
-        child: isActive
-            ? ActiveItem(
-                icon: e.activeIcon,
-                text: e.title,
-              )
-            : InActiveItem(icon: e.inactiveIcon));
+    return Container(
+      color: Colors.transparent,
+      child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          switchInCurve: Curves.easeInOut,
+          switchOutCurve: Curves.easeInOut,
+          child: isActive
+              ? ActiveItem(
+                  icon: e.activeIcon,
+                  text: e.title,
+                )
+              : InActiveItem(icon: e.inactiveIcon)),
+    );
   }
 }

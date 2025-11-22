@@ -34,9 +34,9 @@ class FirestoreServices implements DataBaseService {
         if (query['limit'] != null) {
           data = data.limit(query['limit']);
         }
-        var result = await data.get();
-        return result.docs.map((doc) => doc.data()).toList();
       }
+      var result = await data.get();
+      return result.docs.map((doc) => doc.data()).toList();
     }
   }
 

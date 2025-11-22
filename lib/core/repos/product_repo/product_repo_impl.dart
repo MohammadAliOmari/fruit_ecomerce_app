@@ -14,8 +14,8 @@ class ProductRepoImpl implements ProductRepo {
   Future<Either<Failure, List<ProductEntity>>> getProduct() async {
     try {
       var data = await dataBaseService.getData(
-              collectionPath: BackendEndPoint.products)
-          as List<Map<String, dynamic>>;
+        collectionPath: BackendEndPoint.products,
+      ) as List<Map<String, dynamic>>;
       List<ProductEntity> products =
           data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
 

@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruite_app/core/product_cubit/products_cubit.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 import 'package:fruite_app/core/widgets/notifcation_widget.dart';
 import 'package:fruite_app/core/widgets/search_text_field.dart';
+import 'package:fruite_app/features/home/presentation/view/widgets/best_selling_grid_view_bloc_builder.dart';
 
-class ProductViewBody extends StatelessWidget {
-  const ProductViewBody({super.key});
+class ProductViewBody extends StatefulWidget {
+  const ProductViewBody({
+    super.key,
+  });
+  @override
+  State<ProductViewBody> createState() => _ProductViewBodyState();
+}
+
+class _ProductViewBodyState extends State<ProductViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ProductsCubit>().getProducts();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +59,7 @@ class ProductViewBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '5 نتائج',
+                        '${context.watch<ProductsCubit>().productlength} نتائج',
                         style: AppTextStyles().bodyBasabold,
                       ),
                       Container(
@@ -65,7 +82,7 @@ class ProductViewBody extends StatelessWidget {
             ],
           ),
         ),
-        //BestSellingGridViewBlocBuilder(),
+        BestSellingGridViewBlocBuilder(),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruite_app/features/home/presentation/view/cart_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/home/presentation/view/product_view.dart';
 import 'package:fruite_app/features/layout/presentation/widgets/custom_bottom_nav_bar.dart';
@@ -17,11 +18,9 @@ class _LayoutViewState extends State<LayoutView> {
   List<Widget> screens = [
     const HomeView(),
     ProductView(),
+    CartView(),
     Container(
-      color: Colors.amber,
-    ),
-    Container(
-      color: Colors.blue,
+      color: Colors.green,
     ),
   ];
 
