@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
+import 'package:fruite_app/features/home/domain/entites/cart_item_entity.dart';
+import 'package:fruite_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
-
+  const CartItem({super.key, required this.cart});
+  final CartItemEntity cart;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +20,7 @@ class CartItem extends StatelessWidget {
             color: Color(0xffF3F5F7),
           ),
           child: Image.network(
-            'https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg',
+            cart.product.imagePath!,
             height: 50,
             width: 40,
           ),
@@ -30,14 +33,14 @@ class CartItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'البصل',
+              cart.product.name,
               style: AppTextStyles().bodysmallbold,
             ),
             SizedBox(
               height: 6,
             ),
             Text(
-              '3 كيلو',
+              '${cart.calculateTotaluniWeight()} كيلو',
               style: AppTextStyles()
                   .bodysmallRegular
                   .copyWith(color: AppColors.orange),
@@ -59,7 +62,7 @@ class CartItem extends StatelessWidget {
                   width: 16,
                 ),
                 Text(
-                  '1',
+                  cart.quantity.toString(),
                   style: AppTextStyles().bodyBasabold,
                 ),
                 SizedBox(
@@ -81,13 +84,18 @@ class CartItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Icon(
-              Icons.delete_outline,
-              color: AppColors.lightgrey2,
+            GestureDetector(
+              onTap: () {
+                context.read<CartCubit>().removeFromCart(cart);
+              },
+              child: Icon(
+                Icons.delete_outline,
+                color: AppColors.lightgrey2,
+              ),
             ),
             const SizedBox(height: 32),
             Text(
-              ' 120 دينار',
+              ' ${cart.calculateTotalPrice()} دينار',
               style: AppTextStyles()
                   .bodyBasabold
                   .copyWith(color: AppColors.orange),

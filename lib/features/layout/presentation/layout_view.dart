@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruite_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 import 'package:fruite_app/features/home/presentation/view/cart_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/home/presentation/view/product_view.dart';
@@ -26,14 +28,26 @@ class _LayoutViewState extends State<LayoutView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[curentindex],
-      bottomNavigationBar: CustomBottomNavBar(
-        onTabChange: (value) {
-          setState(() {
-            curentindex = value;
-          });
+    return BlocProvider(
+      create: (context) => CartCubit(),
+      child: BlocListener<CartCubit, CartState>(
+        listener: (context, state) {
+          if (state is AddToCart) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Product added to cart')),
+            );
+          }
         },
+        child: Scaffold(
+          body: screens[curentindex],
+          bottomNavigationBar: CustomBottomNavBar(
+            onTabChange: (value) {
+              setState(() {
+                curentindex = value;
+              });
+            },
+          ),
+        ),
       ),
     );
   }

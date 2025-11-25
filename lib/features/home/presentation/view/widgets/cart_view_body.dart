@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
+import 'package:fruite_app/features/home/presentation/cart_cubit/cart_cubit.dart';
 import 'package:fruite_app/features/home/presentation/view/widgets/cart_item_list.dart';
 
 class CartViewBody extends StatelessWidget {
@@ -30,7 +32,9 @@ class CartViewBody extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: Text(
-                  'لا يوجد منتجات في السلة',
+                  context.read<CartCubit>().cartEntity.cartList.isEmpty
+                      ? 'لا يوجد منتجات في السلة'
+                      : 'لديك ${context.watch<CartCubit>().cartEntity.cartList.length} منتجات في السلة',
                   style: AppTextStyles()
                       .bodysmallRegular
                       .copyWith(color: Color(0xff1B5E37)),
@@ -42,7 +46,7 @@ class CartViewBody extends StatelessWidget {
             ),
           ]),
         )),
-        CartItemList(),
+        CartItemList(cart: context.read<CartCubit>().cartEntity.cartList),
       ],
     );
   }
