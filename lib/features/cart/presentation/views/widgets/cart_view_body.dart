@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
-import 'package:fruite_app/features/home/presentation/cart_cubit/cart_cubit.dart';
-import 'package:fruite_app/features/home/presentation/view/widgets/cart_item_list.dart';
+import 'package:fruite_app/core/cubits/cart_cubit/cart_cubit.dart';
+import 'package:fruite_app/features/cart/presentation/views/widgets/cart_item_list.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});

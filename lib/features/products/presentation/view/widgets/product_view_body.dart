@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruite_app/core/product_cubit/products_cubit.dart';
+import 'package:fruite_app/core/cubits/product_cubit/products_cubit.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 import 'package:fruite_app/core/widgets/notifcation_widget.dart';
 import 'package:fruite_app/core/widgets/search_text_field.dart';
-import 'package:fruite_app/features/home/presentation/view/widgets/best_selling_grid_view_bloc_builder.dart';
+import 'package:fruite_app/features/best_selling_product/presentation/view/widget/best_selling_grid_view_bloc_builder.dart';
 
 class ProductViewBody extends StatefulWidget {
   const ProductViewBody({

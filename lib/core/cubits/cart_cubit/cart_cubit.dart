@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/entities/product_entity.dart';
-import 'package:fruite_app/features/home/domain/entites/cart_entity.dart';
-import 'package:fruite_app/features/home/domain/entites/cart_item_entity.dart';
+import 'package:fruite_app/features/cart/domain/entites/cart_entity.dart';
+import 'package:fruite_app/features/cart/domain/entites/cart_item_entity.dart';
 import 'package:meta/meta.dart';
 
 part 'cart_state.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
+import 'package:fruite_app/features/best_selling_product/presentation/view/best_selling_view.dart';
 
 class BestSellingHeadar extends StatelessWidget {
   const BestSellingHeadar({super.key});
@@ -20,7 +21,7 @@ class BestSellingHeadar extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/best-selling');
+              Navigator.pushNamed(context, BestSellingView.routeName);
             },
             child: Text(
               'عرض الكل',
