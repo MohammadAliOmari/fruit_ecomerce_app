@@ -10,7 +10,7 @@ class CartItemEntity {
     return product.price * quantity;
   }
 
-  String calculateTotaluniWeight() {
+  String calculateTotalWeight() {
     return quantity.toString();
   }
 
@@ -19,8 +19,6 @@ class CartItemEntity {
   }
 
   void decrementQuantity() {
-    if (quantity > 0) {
-      quantity--;
-    }
+    quantity--;
   }
 }

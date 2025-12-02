@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
 import 'package:fruite_app/features/auth/presentation/view/signup_view.dart';
 import 'package:fruite_app/features/best_selling_product/presentation/view/best_selling_view.dart';
+import 'package:fruite_app/features/check_out/presentation/view/check_out_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/layout/presentation/layout_view.dart';
 import 'package:fruite_app/features/on_boarding/presentation/view/on_boarding_view.dart';
@@ -19,6 +20,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case LayoutView.routeName:
       return MaterialPageRoute(
         builder: (_) => const LayoutView(),
+      );
+    case CheckOutView.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const CheckOutView(),
       );
     case SigninView.routeName:
       return MaterialPageRoute(
