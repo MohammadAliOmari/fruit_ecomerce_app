@@ -9,12 +9,12 @@ class CheckOutSteps extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(
-        steps.length,
+        steps().length,
         (index) {
           return Expanded(
             child: StepItem(
                 isActive: false,
-                title: steps[index],
+                title: steps()[index],
                 index: index,
                 currentIndex: index),
           );
@@ -23,5 +23,5 @@ class CheckOutSteps extends StatelessWidget {
     );
   }
 
-  List<String> get steps => ['الشحن', 'العنوان', 'الدفع', 'المراجعة'];
+  List<String> steps() => ['الشحن', 'العنوان', 'الدفع', 'المراجعة'];
 }

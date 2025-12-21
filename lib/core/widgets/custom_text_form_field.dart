@@ -44,7 +44,7 @@ class CustomTextFormField extends StatelessWidget {
                 : null)
             : null,
         filled: true,
-        fillColor: AppColors.lightgrey.withOpacity(.2),
+        fillColor: AppColors.lightgrey,
         hintStyle: AppTextStyles().bodysmallbold.copyWith(
               color: AppColors.lightgrey2,
             ),
