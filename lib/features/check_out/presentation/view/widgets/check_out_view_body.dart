@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/core/widgets/custom_button.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/check_out_page_view.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/check_out_steps.dart';
-import 'package:fruite_app/features/check_out/presentation/view/widgets/shiping_section.dart';
 
 class CheckOutViewBody extends StatefulWidget {
   const CheckOutViewBody({super.key});
@@ -13,6 +12,7 @@ class CheckOutViewBody extends StatefulWidget {
 
 class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   late PageController pageController;
+  int currentIndex = 0;
   @override
   void initState() {
     pageController = PageController();
@@ -34,9 +34,16 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           SizedBox(
             height: 18,
           ),
-          CheckOutSteps(),
+          CheckOutSteps(currentIndex: currentIndex),
           Expanded(
-            child: CheckOutPageView(pageController: pageController),
+            child: CheckOutPageView(
+              pageController: pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+            ),
           ),
           CustomButton(
             title: 'التالي',

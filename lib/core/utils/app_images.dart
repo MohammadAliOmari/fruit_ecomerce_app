@@ -1,14 +1,15 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsImagesAppleicon
   /// assets/images/appleicon.svg
   static const String assetsImagesAppleicon = "assets/images/appleicon.svg";
 
   /// Assets for assetsImagesFacbookicons
   /// assets/images/facbookicons.svg
-  static const String assetsImagesFacbookicons = "assets/images/facbookicons.svg";
+  static const String assetsImagesFacbookicons =
+      "assets/images/facbookicons.svg";
 
   /// Assets for assetsImagesFiltter
   /// assets/images/filtter.svg
@@ -28,7 +29,8 @@ class Assets {
 
   /// Assets for assetsImagesHomeOutline
   /// assets/images/home_outline.svg
-  static const String assetsImagesHomeOutline = "assets/images/home_outline.svg";
+  static const String assetsImagesHomeOutline =
+      "assets/images/home_outline.svg";
 
   /// Assets for assetsImagesLogo
   /// assets/images/logo.svg
@@ -36,23 +38,28 @@ class Assets {
 
   /// Assets for assetsImagesNotification
   /// assets/images/notification.svg
-  static const String assetsImagesNotification = "assets/images/notification.svg";
+  static const String assetsImagesNotification =
+      "assets/images/notification.svg";
 
   /// Assets for assetsImagesOnboardingBg1
   /// assets/images/onboarding_bg1.svg
-  static const String assetsImagesOnboardingBg1 = "assets/images/onboarding_bg1.svg";
+  static const String assetsImagesOnboardingBg1 =
+      "assets/images/onboarding_bg1.svg";
 
   /// Assets for assetsImagesOnboardingBg2
   /// assets/images/onboarding_bg2.svg
-  static const String assetsImagesOnboardingBg2 = "assets/images/onboarding_bg2.svg";
+  static const String assetsImagesOnboardingBg2 =
+      "assets/images/onboarding_bg2.svg";
 
   /// Assets for assetsImagesOnboardingImg1
   /// assets/images/onboarding_img1.svg
-  static const String assetsImagesOnboardingImg1 = "assets/images/onboarding_img1.svg";
+  static const String assetsImagesOnboardingImg1 =
+      "assets/images/onboarding_img1.svg";
 
   /// Assets for assetsImagesOnboardingImg2
   /// assets/images/onboarding_img2.svg
-  static const String assetsImagesOnboardingImg2 = "assets/images/onboarding_img2.svg";
+  static const String assetsImagesOnboardingImg2 =
+      "assets/images/onboarding_img2.svg";
 
   /// Assets for assetsImagesPlant
   /// assets/images/plant.svg
@@ -60,11 +67,13 @@ class Assets {
 
   /// Assets for assetsImagesProductsFill
   /// assets/images/products_fill.svg
-  static const String assetsImagesProductsFill = "assets/images/products_fill.svg";
+  static const String assetsImagesProductsFill =
+      "assets/images/products_fill.svg";
 
   /// Assets for assetsImagesProductsOutline
   /// assets/images/products_outline.svg
-  static const String assetsImagesProductsOutline = "assets/images/products_outline.svg";
+  static const String assetsImagesProductsOutline =
+      "assets/images/products_outline.svg";
 
   /// Assets for assetsImagesProfilePic
   /// assets/images/profile_pic.png
@@ -80,15 +89,18 @@ class Assets {
 
   /// Assets for assetsImagesShoppingCartFill
   /// assets/images/shopping-cart_fill.svg
-  static const String assetsImagesShoppingCartFill = "assets/images/shopping-cart_fill.svg";
+  static const String assetsImagesShoppingCartFill =
+      "assets/images/shopping-cart_fill.svg";
 
   /// Assets for assetsImagesShoppingCartOutline
   /// assets/images/shopping-cart_outline.svg
-  static const String assetsImagesShoppingCartOutline = "assets/images/shopping-cart_outline.svg";
+  static const String assetsImagesShoppingCartOutline =
+      "assets/images/shopping-cart_outline.svg";
 
   /// Assets for assetsImagesSplashBottom
   /// assets/images/splash_bottom.svg
-  static const String assetsImagesSplashBottom = "assets/images/splash_bottom.svg";
+  static const String assetsImagesSplashBottom =
+      "assets/images/splash_bottom.svg";
 
   /// Assets for assetsImagesUserFill
   /// assets/images/user_fill.svg
@@ -96,6 +108,22 @@ class Assets {
 
   /// Assets for assetsImagesUserOutline
   /// assets/images/user_outline.svg
-  static const String assetsImagesUserOutline = "assets/images/user_outline.svg";
-}
+  static const String assetsImagesUserOutline =
+      "assets/images/user_outline.svg";
 
+  /// Assets for assetsImagesVisa
+  /// assets/images/visa.png
+  static const String assetsImagesVisa = "assets/images/visa.png";
+
+  /// Assets for assetsImagesMasterCard
+  /// assets/images/mastercard.png
+  static const String assetsImagesMasterCard = "assets/images/mastercard.png";
+
+  /// Assets for assetsImagesPayPal
+  /// assets/images/paypal.png
+  static const String assetsImagesPayPal = "assets/images/paypal.png";
+
+  /// Assets for assetsImagesApplePay
+  /// assets/images/applepay.png
+  static const String assetsImagesApplePay = "assets/images/applepay.png";
+}

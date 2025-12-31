@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/cubits/cart_cubit/cart_cubit.dart';
@@ -45,10 +47,12 @@ class ActionButtonRow extends StatelessWidget {
         GestureDetector(
           onTap: () {
             cart.decrementQuantity();
-            if (cart.quantity == 0) {
+            log(cart.quantity.toString());
+            if (cart.quantity <= 0) {
               context.read<CartCubit>().removeFromCart(cart);
+            } else {
+              context.read<CartItemCubit>().updateCartItem(cart);
             }
-            context.read<CartItemCubit>().updateCartItem(cart);
           },
           child: CircleAvatar(
               radius: 14,

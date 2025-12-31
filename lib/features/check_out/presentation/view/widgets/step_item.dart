@@ -7,11 +7,10 @@ class StepItem extends StatelessWidget {
       {super.key,
       required this.title,
       required this.index,
-      required this.currentIndex,
       required this.isActive});
   final String title;
   final int index;
-  final int currentIndex;
+  // final int currentIndex;
   final bool isActive;
   @override
   Widget build(BuildContext context) {

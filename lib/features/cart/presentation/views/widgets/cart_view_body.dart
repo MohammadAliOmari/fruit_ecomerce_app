@@ -34,7 +34,7 @@ class CartViewBody extends StatelessWidget {
                 child: Text(
                   context.read<CartCubit>().cartEntity.cartList.isEmpty
                       ? 'لا يوجد منتجات في السلة'
-                      : 'لديك ${context.watch<CartCubit>().cartEntity.cartList.length} منتجات في السلة',
+                      : 'لديك ${context.read<CartCubit>().cartEntity.cartList.length} منتجات في السلة',
                   style: AppTextStyles()
                       .bodysmallRegular
                       .copyWith(color: Color(0xff1B5E37)),
