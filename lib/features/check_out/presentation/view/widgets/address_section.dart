@@ -2,18 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
 import 'package:fruite_app/core/widgets/custom_text_form_field.dart';
+import 'package:fruite_app/features/check_out/domain/entities/order_entity.dart';
+import 'package:provider/provider.dart';
 
-class AddressSection extends StatelessWidget {
-  const AddressSection({super.key});
+class AddressSection extends StatefulWidget {
+  const AddressSection({super.key, required this.formKey});
+  final GlobalKey<FormState> formKey;
 
+  @override
+  State<AddressSection> createState() => _AddressSectionState();
+}
+
+class _AddressSectionState extends State<AddressSection> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
+        key: widget.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.name = value!;
+              },
               hintText: 'الاسم الكامل',
               keyboardType: TextInputType.name,
             ),
@@ -21,6 +33,9 @@ class AddressSection extends StatelessWidget {
               height: 8,
             ),
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.phone = value!;
+              },
               hintText: 'رقم الهاتف',
               keyboardType: TextInputType.phone,
             ),
@@ -28,6 +43,9 @@ class AddressSection extends StatelessWidget {
               height: 8,
             ),
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.email = value!;
+              },
               hintText: 'البريد الاكتروني',
               keyboardType: TextInputType.emailAddress,
             ),
@@ -35,6 +53,9 @@ class AddressSection extends StatelessWidget {
               height: 8,
             ),
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.address = value!;
+              },
               hintText: ' العنوان',
               keyboardType: TextInputType.streetAddress,
             ),
@@ -42,6 +63,9 @@ class AddressSection extends StatelessWidget {
               height: 8,
             ),
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.city = value!;
+              },
               hintText: 'المدينة',
               keyboardType: TextInputType.streetAddress,
             ),
@@ -49,6 +73,9 @@ class AddressSection extends StatelessWidget {
               height: 8,
             ),
             CustomTextFormField(
+              onSaved: (value) {
+                context.read<OrderEntity>().shipping!.addressDetails = value!;
+              },
               hintText: 'رقم الطابق ,الشقة..',
               keyboardType: TextInputType.streetAddress,
             ),
@@ -62,9 +89,11 @@ class AddressSection extends StatelessWidget {
                   child: Directionality(
                     textDirection: TextDirection.ltr,
                     child: Switch(
-                      value: true,
+                      value: context.read<OrderEntity>().shipping?.isDefault ??
+                          false,
                       onChanged: (value) {
-                        value = value;
+                        context.read<OrderEntity>().shipping!.isDefault = value;
+                        setState(() {});
                       },
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/features/auth/presentation/view/signin_view.dart';
 import 'package:fruite_app/features/auth/presentation/view/signup_view.dart';
 import 'package:fruite_app/features/best_selling_product/presentation/view/best_selling_view.dart';
+import 'package:fruite_app/features/cart/domain/entites/cart_entity.dart';
 import 'package:fruite_app/features/check_out/presentation/view/check_out_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/layout/presentation/layout_view.dart';
@@ -23,7 +24,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case CheckOutView.routeName:
       return MaterialPageRoute(
-        builder: (_) => const CheckOutView(),
+        builder: (_) => CheckOutView(
+          cartEntity: settings.arguments as CartEntity,
+        ),
       );
     case SigninView.routeName:
       return MaterialPageRoute(

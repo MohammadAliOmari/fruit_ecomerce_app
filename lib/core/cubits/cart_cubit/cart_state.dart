@@ -7,4 +7,7 @@ final class CartInitial extends CartState {}
 
 final class AddToCart extends CartState {}
 
-final class RemoveFromCart extends CartState {}
+final class RemoveFromCart extends CartState {
+  final CartItemEntity item;
+  RemoveFromCart({required this.item});
+}

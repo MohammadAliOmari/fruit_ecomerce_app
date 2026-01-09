@@ -1,6 +1,6 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/features/cart/domain/entites/cart_item_entity.dart';
-import 'package:meta/meta.dart';
 
 part 'cart_item_state.dart';
 

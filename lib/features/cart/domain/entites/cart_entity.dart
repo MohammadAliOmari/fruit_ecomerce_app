@@ -22,6 +22,14 @@ class CartEntity {
     return totalPrice;
   }
 
+  double calculateTotalQuantity() {
+    double totalQuantity = 0;
+    for (var cartItem in cartList) {
+      totalQuantity += cartItem.quantity;
+    }
+    return totalQuantity;
+  }
+
   bool ifExist(ProductEntity product) {
     for (var cartItem in cartList) {
       if (cartItem.product.code == product.code) {

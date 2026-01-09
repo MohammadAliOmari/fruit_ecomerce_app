@@ -20,7 +20,11 @@ class CustomCartButton extends StatelessWidget {
             title:
                 'الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} دينار',
             onPressed: () {
-              Navigator.pushNamed(context, CheckOutView.routeName);
+              Navigator.pushNamed(
+                context,
+                CheckOutView.routeName,
+                arguments: context.read<CartCubit>().cartEntity,
+              );
             },
           ),
         );

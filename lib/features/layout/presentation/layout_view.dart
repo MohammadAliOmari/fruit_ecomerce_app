@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruite_app/core/cubits/cart_cubit/cart_cubit.dart';
+import 'package:fruite_app/core/utils/app_colors.dart';
 import 'package:fruite_app/features/cart/presentation/views/cart_view.dart';
 import 'package:fruite_app/features/home/presentation/view/home_view.dart';
 import 'package:fruite_app/features/products/presentation/view/product_view.dart';
@@ -34,7 +35,11 @@ class _LayoutViewState extends State<LayoutView> {
         listener: (context, state) {
           if (state is AddToCart) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Product added to cart')),
+              SnackBar(
+                backgroundColor: AppColors.primary,
+                content: Text('Product added to cart'),
+                duration: Duration(milliseconds: 800),
+              ),
             );
           }
         },

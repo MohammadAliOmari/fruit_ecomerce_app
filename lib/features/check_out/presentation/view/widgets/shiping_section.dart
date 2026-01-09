@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:fruite_app/features/check_out/domain/entities/order_entity.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/shiping_item.dart';
+import 'package:provider/provider.dart';
 
 class ShipingSection extends StatefulWidget {
   const ShipingSection({super.key});
@@ -8,10 +10,12 @@ class ShipingSection extends StatefulWidget {
   State<ShipingSection> createState() => _ShipingSectionState();
 }
 
-class _ShipingSectionState extends State<ShipingSection> {
+class _ShipingSectionState extends State<ShipingSection>
+    with AutomaticKeepAliveClientMixin {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       children: [
         SizedBox(
@@ -21,12 +25,15 @@ class _ShipingSectionState extends State<ShipingSection> {
           onTap: () {
             setState(() {
               selectedIndex = 1;
+              context.read<OrderEntity>().payWithCash = true;
             });
           },
           isSelected: selectedIndex == 1,
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
-          price: '2',
+          price:
+              (context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 1)
+                  .toString(),
         ),
         SizedBox(
           height: 10,
@@ -35,14 +42,22 @@ class _ShipingSectionState extends State<ShipingSection> {
           onTap: () {
             setState(() {
               selectedIndex = 2;
+              context.read<OrderEntity>().payWithCash = false;
             });
           },
           isSelected: selectedIndex == 2,
           title: 'الدفع اونلاين',
           subtitle: ' يرجى تحديد طريقة الدفع',
-          price: '2',
+          price: context
+              .read<OrderEntity>()
+              .cartEntity
+              .calculateTotalPrice()
+              .toString(),
         ),
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

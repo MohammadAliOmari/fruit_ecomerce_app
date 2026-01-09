@@ -15,7 +15,7 @@ class CartView extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(child: CartViewBody()),
         bottomNavigationBar:
-            context.read<CartCubit>().cartEntity.cartList.isEmpty
+            context.watch<CartCubit>().cartEntity.cartList.isEmpty
                 ? SizedBox.shrink()
                 : CustomCartButton(),
       ),
