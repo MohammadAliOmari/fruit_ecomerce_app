@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fruite_app/core/helper/functions/build_error_snack_bar.dart';
 import 'package:fruite_app/core/widgets/custom_button.dart';
 import 'package:fruite_app/features/check_out/domain/entities/order_entity.dart';
+import 'package:fruite_app/features/check_out/presentation/manager/order_cubit/add_order_cubit.dart';
+import 'package:fruite_app/features/check_out/presentation/view/widgets/add_order_bloc_listener.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/check_out_page_view.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/check_out_steps.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,8 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   late PageController pageController;
   int currentIndex = 0;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  ValueNotifier<AutovalidateMode> autovalidateMode =
+      ValueNotifier(AutovalidateMode.disabled);
   @override
   void initState() {
     pageController = PageController();
@@ -27,6 +30,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    autovalidateMode.dispose();
     super.dispose();
   }
 
@@ -45,6 +49,7 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
             child: CheckOutPageView(
               formKey: formKey,
               pageController: pageController,
+              autovalidateMode: autovalidateMode,
               onPageChanged: (index) {
                 setState(() {
                   currentIndex = index;
@@ -55,22 +60,52 @@ class _CheckOutViewBodyState extends State<CheckOutViewBody> {
           CustomButton(
             title: getstring(currentIndex),
             onPressed: () {
-              if (context.read<OrderEntity>().payWithCash != null) {
+              if (currentIndex == 0) {
+                handelSippingSectionValidation(context);
+              } else if (currentIndex == 1) {
+                handelAddressSectionValidation();
+              } else if (currentIndex == 2) {
                 pageController.nextPage(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                 );
               } else {
-                builderrorsnackbar(context, 'الرجاء اختيار طريقة الدفع');
+                var orderEntity = context.read<OrderEntity>();
+                context.read<AddOrderCubit>().addOrder(orderEntity);
               }
             },
           ),
           const SizedBox(
             height: 16,
           ),
+          AddOrderBlocListener(),
         ],
       ),
     );
+  }
+
+  void handelSippingSectionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      builderrorsnackbar(context, 'الرجاء اختيار طريقة الدفع');
+    }
+  }
+
+  void handelAddressSectionValidation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      autovalidateMode.value = AutovalidateMode.always;
+      builderrorsnackbar(context, 'الرجاء اكمال البيانات');
+    }
   }
 
   String getstring(int index) {

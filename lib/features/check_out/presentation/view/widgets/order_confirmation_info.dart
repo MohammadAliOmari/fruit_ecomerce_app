@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fruite_app/core/utils/app_text_styles.dart';
+import 'package:fruite_app/features/check_out/domain/entities/order_entity.dart';
 import 'package:fruite_app/features/check_out/presentation/view/widgets/confirmation_item.dart';
+import 'package:provider/provider.dart';
 
 class OrderConfirmationInfo extends StatelessWidget {
   const OrderConfirmationInfo({
@@ -23,7 +25,7 @@ class OrderConfirmationInfo extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '100 دينار',
+                  '${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} دينار',
                   style: AppTextStyles().bodysmallSemibold,
                 ),
               ],
@@ -39,7 +41,7 @@ class OrderConfirmationInfo extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '5 دينار',
+                  '1 دينار',
                   style: AppTextStyles().bodysmallRegular,
                 ),
               ],
@@ -64,7 +66,7 @@ class OrderConfirmationInfo extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '105 دينار',
+                  '${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 1} دينار',
                   style: AppTextStyles().bodyBasabold,
                 ),
               ],

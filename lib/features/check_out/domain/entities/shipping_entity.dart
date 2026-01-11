@@ -1,19 +1,19 @@
 class ShippingEntity {
-  String name;
-  String address;
-  String phone;
-  String city;
-  String email;
-  String addressDetails;
-  bool isDefault = false;
+  String? name;
+  String? address;
+  String? phone;
+  String? city;
+  String? email;
+  String? addressDetails;
+  bool isDefault;
 
   ShippingEntity({
-    required this.name,
-    required this.address,
-    required this.addressDetails,
-    required this.city,
-    required this.email,
-    required this.isDefault,
-    required this.phone,
+    this.name,
+    this.address,
+    this.addressDetails,
+    this.city,
+    this.email,
+    this.phone,
+    this.isDefault = false,
   });
 }

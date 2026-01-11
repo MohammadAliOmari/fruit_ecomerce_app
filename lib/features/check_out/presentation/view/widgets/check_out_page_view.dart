@@ -11,10 +11,12 @@ class CheckOutPageView extends StatelessWidget {
     required this.pageController,
     this.onPageChanged,
     required this.formKey,
+    required this.autovalidateMode,
   });
   final PageController pageController;
   final ValueChanged<int>? onPageChanged;
   final GlobalKey<FormState> formKey;
+  final ValueNotifier<AutovalidateMode> autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,8 @@ class CheckOutPageView extends StatelessWidget {
 
   List<Widget> pages() => [
         ShipingSection(),
-        AddressSection(formKey: formKey),
+        AddressSection(formKey: formKey, autovalidateMode: autovalidateMode),
         const PaymentSection(),
-        const ConfirmationSection(),
+        ConfirmationSection(pageController: pageController),
       ];
 }
